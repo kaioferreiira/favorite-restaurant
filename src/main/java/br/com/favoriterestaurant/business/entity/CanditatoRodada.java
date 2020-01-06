@@ -12,30 +12,31 @@ public class CanditatoRodada {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long idCandidatoRodada;
+    private Long idCandidatoRodada;
 
     @ManyToOne
+    @JoinColumn(name = "id_restaurante")
     private Restaurante restaurante;
 
     @ManyToOne
-    @JoinColumn(name = "idRodada")
+    @JoinColumn(name = "id_rodada")
     private Rodada rodada;
 
 
     public CanditatoRodada() {
     }
 
-    public CanditatoRodada(long idCandidatoRodada, Restaurante restaurante, Rodada rodada) {
+    public CanditatoRodada(Long idCandidatoRodada, Restaurante restaurante, Rodada rodada) {
         this.idCandidatoRodada = idCandidatoRodada;
         this.restaurante = restaurante;
         this.rodada = rodada;
     }
 
-    public long getIdCandidatoRodada() {
+    public Long getIdCandidatoRodada() {
         return idCandidatoRodada;
     }
 
-    public void setIdCandidatoRodada(long idCandidatoRodada) {
+    public void setIdCandidatoRodada(Long idCandidatoRodada) {
         this.idCandidatoRodada = idCandidatoRodada;
     }
 

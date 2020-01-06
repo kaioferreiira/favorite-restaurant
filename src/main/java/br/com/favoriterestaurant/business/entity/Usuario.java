@@ -10,20 +10,20 @@ public class Usuario {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long idUsuario;
+    private Long idUsuario;
 
     public Usuario() {
     }
 
-    public Usuario(long idUsuario) {
+    public Usuario(Long idUsuario) {
         this.idUsuario = idUsuario;
     }
 
-    public long getIdUsuario() {
+    public Long getIdUsuario() {
         return idUsuario;
     }
 
-    public void setIdUsuario(long idUsuario) {
+    public void setIdUsuario(Long idUsuario) {
         this.idUsuario = idUsuario;
     }
 }

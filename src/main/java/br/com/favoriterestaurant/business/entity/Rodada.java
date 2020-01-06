@@ -6,6 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
@@ -14,9 +15,10 @@ public class Rodada {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long idRodada;
+    private Long idRodada;
 
     @OneToOne
+    @JoinColumn(name = "id_facilitador")
     private Facilitador facilitador;
 
     @OneToMany(mappedBy = "idCandidatoRodada")
@@ -25,7 +27,7 @@ public class Rodada {
     public Rodada() {
     }
 
-    public Rodada(long idRodada, Facilitador facilitador) {
+    public Rodada(Long idRodada, Facilitador facilitador) {
         this.idRodada = idRodada;
         this.facilitador = facilitador;
     }
@@ -38,11 +40,11 @@ public class Rodada {
         this.canditatoRodadas = canditatoRodadas;
     }
 
-    public long getIdRodada() {
+    public Long getIdRodada() {
         return idRodada;
     }
 
-    public void setIdRodada(long idRodada) {
+    public void setIdRodada(Long idRodada) {
         this.idRodada = idRodada;
     }
 

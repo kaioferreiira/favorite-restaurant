@@ -10,20 +10,31 @@ public class Facilitador {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer idFacilitador;
+    private Long idFacilitador;
+
+    private String nome;
 
     public Facilitador() {
     }
 
-    public Facilitador(Integer idFacilitador) {
+    public Facilitador(Long idFacilitador, String nome) {
         this.idFacilitador = idFacilitador;
+        this.nome = nome;
     }
 
-    public Integer getIdFacilitador() {
+    public Long getIdFacilitador() {
         return idFacilitador;
     }
 
-    public void setIdFacilitador(Integer idFacilitador) {
+    public void setIdFacilitador(Long idFacilitador) {
         this.idFacilitador = idFacilitador;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
     }
 }
