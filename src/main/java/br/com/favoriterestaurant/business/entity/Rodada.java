@@ -2,6 +2,7 @@ package br.com.favoriterestaurant.business.entity;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -17,27 +18,22 @@ public class Rodada {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idRodada;
 
+    private String nomeRodada;
+
     @OneToOne
     @JoinColumn(name = "id_facilitador")
     private Facilitador facilitador;
 
-    @OneToMany(mappedBy = "idCandidatoRodada")
-    private List<CanditatoRodada> canditatoRodadas;
+    @OneToMany(mappedBy = "rodada", cascade = CascadeType.ALL)
+    private List<CandidatoRodada> canditatoRodadas;
 
     public Rodada() {
     }
 
-    public Rodada(Long idRodada, Facilitador facilitador) {
+    public Rodada(Long idRodada, String nomeRodada, Facilitador facilitador) {
         this.idRodada = idRodada;
+        this.nomeRodada = nomeRodada;
         this.facilitador = facilitador;
-    }
-
-    public List<CanditatoRodada> getCanditatoRodadas() {
-        return canditatoRodadas;
-    }
-
-    public void setCanditatoRodadas(List<CanditatoRodada> canditatoRodadas) {
-        this.canditatoRodadas = canditatoRodadas;
     }
 
     public Long getIdRodada() {
@@ -48,11 +44,27 @@ public class Rodada {
         this.idRodada = idRodada;
     }
 
+    public String getNomeRodada() {
+        return nomeRodada;
+    }
+
+    public void setNomeRodada(String nomeRodada) {
+        this.nomeRodada = nomeRodada;
+    }
+
     public Facilitador getFacilitador() {
         return facilitador;
     }
 
     public void setFacilitador(Facilitador facilitador) {
         this.facilitador = facilitador;
+    }
+
+    public List<CandidatoRodada> getCanditatoRodadas() {
+        return canditatoRodadas;
+    }
+
+    public void setCanditatoRodadas(List<CandidatoRodada> canditatoRodadas) {
+        this.canditatoRodadas = canditatoRodadas;
     }
 }

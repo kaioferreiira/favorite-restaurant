@@ -5,38 +5,38 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Voto {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long idVoto;
+    private Long id;
 
-    @OneToOne
-    @JoinColumn(name = "usuario_id")
+    @ManyToOne
+    @JoinColumn(name = "id_usuario")
     private Usuario usuario;
 
-    @OneToOne
-    @JoinColumn(name = "candidato_id")
-    private CanditatoRodada canditatoRodada;
+    @ManyToOne
+    @JoinColumn(name = "id_candidato_rodada")
+    private CandidatoRodada candidatoRodada;
 
     public Voto() {
     }
 
-    public Voto(long idVoto, Usuario usuario, CanditatoRodada canditatoRodada) {
-        this.idVoto = idVoto;
+    public Voto(Long id, Usuario usuario, CandidatoRodada candidatoRodada) {
+        this.id = id;
         this.usuario = usuario;
-        this.canditatoRodada = canditatoRodada;
+        this.candidatoRodada = candidatoRodada;
     }
 
-    public long getIdVoto() {
-        return idVoto;
+    public Long getId() {
+        return id;
     }
 
-    public void setIdVoto(long idVoto) {
-        this.idVoto = idVoto;
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public Usuario getUsuario() {
@@ -47,11 +47,11 @@ public class Voto {
         this.usuario = usuario;
     }
 
-    public CanditatoRodada getCanditatoRodada() {
-        return canditatoRodada;
+    public CandidatoRodada getCandidatoRodada() {
+        return candidatoRodada;
     }
 
-    public void setCanditatoRodada(CanditatoRodada canditatoRodada) {
-        this.canditatoRodada = canditatoRodada;
+    public void setCandidatoRodada(CandidatoRodada candidatoRodada) {
+        this.candidatoRodada = candidatoRodada;
     }
 }

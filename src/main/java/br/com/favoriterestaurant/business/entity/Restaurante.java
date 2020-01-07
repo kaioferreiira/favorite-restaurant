@@ -1,55 +1,40 @@
 package br.com.favoriterestaurant.business.entity;
 
-import java.util.List;
+import java.io.Serializable;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 @Entity
-public class Restaurante {
+@Table(name = "restaurante")
+public class Restaurante implements Serializable {
+
+    private static final long serialVersionUID = 1L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long idRestaurante;
+    private Long id;
 
     private String nome;
-
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "restaurante")
-    private List<CanditatoRodada> canditatoRodadaList;
-
 
     public Restaurante() {
     }
 
-    public Restaurante(Long idRestaurante, String nome, List<CanditatoRodada> canditatoRodadaList) {
-        this.idRestaurante = idRestaurante;
+
+    public Restaurante(Long id, String nome) {
+        this.id = id;
         this.nome = nome;
-        this.canditatoRodadaList = canditatoRodadaList;
     }
 
-    public Restaurante(Long idRestaurante) {
-        this.idRestaurante = idRestaurante;
+    public Long getId() {
+        return id;
     }
 
-    public long getIdRestaurante() {
-        return idRestaurante;
-    }
-
-    public void setIdRestaurante(Long idRestaurante) {
-        this.idRestaurante = idRestaurante;
-    }
-
-    public List<CanditatoRodada> getCanditatoRodadaList() {
-        return canditatoRodadaList;
-    }
-
-    public void setCanditatoRodadaList(List<CanditatoRodada> canditatoRodadaList) {
-        this.canditatoRodadaList = canditatoRodadaList;
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getNome() {
@@ -60,3 +45,4 @@ public class Restaurante {
         this.nome = nome;
     }
 }
+

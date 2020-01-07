@@ -1,16 +1,19 @@
 package br.com.favoriterestaurant;
 
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 
-import br.com.favoriterestaurant.business.entity.CanditatoRodada;
+import br.com.favoriterestaurant.business.entity.CandidatoRodada;
+import br.com.favoriterestaurant.business.entity.Facilitador;
 import br.com.favoriterestaurant.business.entity.Restaurante;
 import br.com.favoriterestaurant.business.entity.Rodada;
 import br.com.favoriterestaurant.business.entity.Usuario;
 import br.com.favoriterestaurant.business.entity.Voto;
+import br.com.favoriterestaurant.business.reposity.CandidatoRodadaRepository;
+import br.com.favoriterestaurant.business.reposity.FacilitadorRepository;
 import br.com.favoriterestaurant.business.reposity.RestauranteRepository;
+import br.com.favoriterestaurant.business.reposity.RodadaRepository;
 import br.com.favoriterestaurant.business.reposity.UsuarioRepository;
+import br.com.favoriterestaurant.business.reposity.VotoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -29,45 +32,73 @@ public class FavoriteRestaurantApplication implements CommandLineRunner {
     @Autowired
     private RestauranteRepository restauranteRepository;
 
+    @Autowired
+    private FacilitadorRepository facilitadorRepository;
+
+    @Autowired
+    private RodadaRepository rodadaRepository;
+
+    @Autowired
+    private VotoRepository votoRepository;
+
+    @Autowired
+    private CandidatoRodadaRepository candidatoRodadaRepository;
+
 
     @Override
     public void run(String... args) throws Exception {
 
-        Restaurante r1 =  new Restaurante();
-        r1.setIdRestaurante(1l);
-        r1.setNome("Restaurante 1");
 
-        Restaurante r2 =  new Restaurante();
-        r2.setIdRestaurante(2l);
-        r1.setNome("Restaurante 2");
-        restauranteRepository.saveAll(Arrays.asList(r1,r2));
+        Usuario usuario1 = new Usuario(null, "user 1");
+        Usuario usuario2 = new Usuario(null, "user 2");
+        Usuario usuario3 = new Usuario(null, "user 3");
+        Usuario usuario4 = new Usuario(null, "user 4");
+        Usuario usuario5 = new Usuario(null, "user 5");
+        Usuario usuario6 = new Usuario(null, "user 6");
+        usuarioRepository.saveAll(Arrays.asList(usuario1, usuario2, usuario3, usuario4, usuario5, usuario6));
 
-        CanditatoRodada canditatoRodada1 = new CanditatoRodada();
-        canditatoRodada1.setRestaurante(r1);
-
-        CanditatoRodada canditatoRodada2 = new CanditatoRodada();
-        canditatoRodada1.setRestaurante(r2);
-
-        List<CanditatoRodada> restaurantesCandidatos = new ArrayList<>();
-        restaurantesCandidatos.add(canditatoRodada1);
-        restaurantesCandidatos.add(canditatoRodada2);
 
         Rodada rodada1 = new Rodada();
-        rodada1.setIdRodada(1l);
-        rodada1.setFacilitador(null);
-        rodada1.setCanditatoRodadas(restaurantesCandidatos);
+        rodada1.setIdRodada(null);
+        rodada1.setNomeRodada("rodada 1");
+        rodadaRepository.save(rodada1);
+
+        Facilitador facilitador1 = new Facilitador(null, "facilitador 1", rodada1);
+        facilitadorRepository.save(facilitador1);
+
+        rodada1.setFacilitador(facilitador1);
 
 
-        Usuario kaio = new Usuario();
-        kaio.setIdUsuario(1l);
-        usuarioRepository.save(kaio);
-
-        Voto voto1 = new Voto();
-        voto1.setIdVoto(1l);
-        voto1.setUsuario(kaio);
-        voto1.setCanditatoRodada(canditatoRodada1);
+        Restaurante r1 = new Restaurante(null, "Restaurante 1");
+        Restaurante r2 = new Restaurante(null, "Restaurante 2");
+        Restaurante r3 = new Restaurante(null, "Restaurante 3");
+        Restaurante r4 = new Restaurante(null, "Restaurante 4");
+        restauranteRepository.saveAll(Arrays.asList(r1, r2, r3, r4));
 
 
+        CandidatoRodada cd1 = new CandidatoRodada(null, r1, rodada1 );
+        CandidatoRodada cd2 = new CandidatoRodada(null, r2, rodada1 );
+        CandidatoRodada cd3 = new CandidatoRodada(null, r3, rodada1 );
+        candidatoRodadaRepository.saveAll(Arrays.asList(cd1, cd2, cd3));
+
+//        rodada1.setCanditatoRodadas(candidatoRodadaList);
+//        rodadaRepository.save(rodada1);
+
+        System.out.println("----");
+
+
+        //realizar voto
+
+        Voto voto1 = new Voto(null, usuario1, cd1 );
+        Voto voto2 = new Voto(null, usuario2, cd2 );
+        Voto voto3 = new Voto(null, usuario3, cd2 );
+        Voto voto4 = new Voto(null, usuario4, cd2 );
+        Voto voto5 = new Voto(null, usuario5, cd2 );
+        Voto voto6 = new Voto(null, usuario6, cd2 );
+        votoRepository.saveAll(Arrays.asList(voto1, voto2, voto3, voto4, voto5, voto6));
+
+
+        System.out.println("--");
 
     }
 }

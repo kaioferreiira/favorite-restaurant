@@ -1,18 +1,24 @@
 package br.com.favoriterestaurant.business.entity;
 
+import java.io.Serializable;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
 @Entity
-public class CanditatoRodada {
+@Table(name = "candidato_rodada")
+public class CandidatoRodada implements Serializable {
+
+    private static final long serialVersionUID = 1L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long idCandidatoRodada;
+    private Long id;
 
     @ManyToOne
     @JoinColumn(name = "id_restaurante")
@@ -22,22 +28,21 @@ public class CanditatoRodada {
     @JoinColumn(name = "id_rodada")
     private Rodada rodada;
 
-
-    public CanditatoRodada() {
+    public CandidatoRodada() {
     }
 
-    public CanditatoRodada(Long idCandidatoRodada, Restaurante restaurante, Rodada rodada) {
-        this.idCandidatoRodada = idCandidatoRodada;
+    public CandidatoRodada(Long id, Restaurante restaurante, Rodada rodada) {
+        this.id = id;
         this.restaurante = restaurante;
         this.rodada = rodada;
     }
 
-    public Long getIdCandidatoRodada() {
-        return idCandidatoRodada;
+    public Long getId() {
+        return id;
     }
 
-    public void setIdCandidatoRodada(Long idCandidatoRodada) {
-        this.idCandidatoRodada = idCandidatoRodada;
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public Restaurante getRestaurante() {
