@@ -63,6 +63,8 @@ public class FavoriteRestaurantApplication implements CommandLineRunner {
         rodada1.setNomeRodada("rodada 1");
         rodadaRepository.save(rodada1);
 
+        //Ao abrir rodada, verificar se o restaurante vencedor dessa rodada ja foi escolhido no
+        //intervalo de uma semana
         Facilitador facilitador1 = new Facilitador(null, "facilitador 1", rodada1);
         facilitadorRepository.save(facilitador1);
 
