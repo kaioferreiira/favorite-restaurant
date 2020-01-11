@@ -1,5 +1,7 @@
 package br.com.favoriterestaurant.business.entity;
 
+import java.util.Objects;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -36,5 +38,26 @@ public class Usuario {
 
     public void setNome(String nome) {
         this.nome = nome;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Usuario usuario = (Usuario) o;
+        return Objects.equals(idUsuario, usuario.idUsuario);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(idUsuario);
+    }
+
+    @Override
+    public String toString() {
+        return "Usuario{" +
+                "idUsuario=" + idUsuario +
+                ", nome='" + nome + '\'' +
+                '}';
     }
 }

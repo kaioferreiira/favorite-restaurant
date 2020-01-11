@@ -15,4 +15,6 @@ public interface UserEndpoint {
 
     ResponseEntity<Void> updateUser(Long idUser, UserDTO userDTO);
 
+    ResponseEntity<Void> deleteUser(Long idUser);
+
 }

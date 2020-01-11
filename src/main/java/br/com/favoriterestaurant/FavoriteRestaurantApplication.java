@@ -90,6 +90,8 @@ public class FavoriteRestaurantApplication implements CommandLineRunner {
 
 
         //realizar voto
+        //CRITÉRIOS PARA VOTAR
+        //USUARIO SÓ PODE VOTAR EM UM RESTAURANTE POR DIA.
 
         Voto voto1 = new Voto(null, usuario1, cd1 );
         Voto voto2 = new Voto(null, usuario2, cd2 );
@@ -99,8 +101,11 @@ public class FavoriteRestaurantApplication implements CommandLineRunner {
         Voto voto6 = new Voto(null, usuario6, cd2 );
         votoRepository.saveAll(Arrays.asList(voto1, voto2, voto3, voto4, voto5, voto6));
 
-
         System.out.println("--");
+
+        //CRIAR DASHBOARD DE CONTABILIZAÇÃO DE DADOS
+        // CRIAR ENDPOINT PARA BUSCAR O VENCEDOR DO DIAA.
+
 
     }
 }
