@@ -8,10 +8,10 @@ import br.com.favoriterestaurant.business.entity.Restaurante;
 import br.com.favoriterestaurant.business.entity.Rodada;
 import br.com.favoriterestaurant.business.entity.Usuario;
 import br.com.favoriterestaurant.business.entity.Voto;
-import br.com.favoriterestaurant.business.reposity.CandidatoRodadaRepository;
+import br.com.favoriterestaurant.business.reposity.CandidateRoundRepository;
 import br.com.favoriterestaurant.business.reposity.FacilitadorRepository;
 import br.com.favoriterestaurant.business.reposity.RestauranteRepository;
-import br.com.favoriterestaurant.business.reposity.RodadaRepository;
+import br.com.favoriterestaurant.business.reposity.RoundRepository;
 import br.com.favoriterestaurant.business.reposity.UsuarioRepository;
 import br.com.favoriterestaurant.business.reposity.VotoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,13 +36,13 @@ public class FavoriteRestaurantApplication implements CommandLineRunner {
     private FacilitadorRepository facilitadorRepository;
 
     @Autowired
-    private RodadaRepository rodadaRepository;
+    private RoundRepository roundRepository;
 
     @Autowired
     private VotoRepository votoRepository;
 
     @Autowired
-    private CandidatoRodadaRepository candidatoRodadaRepository;
+    private CandidateRoundRepository candidateRoundRepository;
 
 
     @Override
@@ -61,7 +61,7 @@ public class FavoriteRestaurantApplication implements CommandLineRunner {
         Rodada rodada1 = new Rodada();
         rodada1.setIdRodada(null);
         rodada1.setNomeRodada("rodada 1");
-        rodadaRepository.save(rodada1);
+        roundRepository.save(rodada1);
 
         //Ao abrir rodada, verificar se o restaurante vencedor dessa rodada ja foi escolhido no
         //intervalo de uma semana
@@ -69,6 +69,7 @@ public class FavoriteRestaurantApplication implements CommandLineRunner {
         facilitadorRepository.save(facilitador1);
 
         rodada1.setFacilitador(facilitador1);
+        roundRepository.save(rodada1);
 
 
         Restaurante r1 = new Restaurante(null, "Restaurante 1");
@@ -81,7 +82,7 @@ public class FavoriteRestaurantApplication implements CommandLineRunner {
         CandidatoRodada cd1 = new CandidatoRodada(null, r1, rodada1 );
         CandidatoRodada cd2 = new CandidatoRodada(null, r2, rodada1 );
         CandidatoRodada cd3 = new CandidatoRodada(null, r3, rodada1 );
-        candidatoRodadaRepository.saveAll(Arrays.asList(cd1, cd2, cd3));
+        candidateRoundRepository.saveAll(Arrays.asList(cd1, cd2, cd3));
 
 //        rodada1.setCanditatoRodadas(candidatoRodadaList);
 //        rodadaRepository.save(rodada1);
@@ -90,8 +91,8 @@ public class FavoriteRestaurantApplication implements CommandLineRunner {
 
 
         //realizar voto
-        //CRITÉRIOS PARA VOTAR
-        //USUARIO SÓ PODE VOTAR EM UM RESTAURANTE POR DIA.
+//        CRITERIA FOR VOTE
+//        USER CAN ONLY VOTE ON A RESTAURANT PER DAY.
 
         Voto voto1 = new Voto(null, usuario1, cd1 );
         Voto voto2 = new Voto(null, usuario2, cd2 );

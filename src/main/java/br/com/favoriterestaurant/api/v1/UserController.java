@@ -9,14 +9,13 @@ import java.util.Objects;
 
 import br.com.favoriterestaurant.api.v1.contracts.UserEndpoint;
 import br.com.favoriterestaurant.business.dto.UserDTO;
-import br.com.favoriterestaurant.business.service.UserService;
+import br.com.favoriterestaurant.business.service.contracts.UserService;
 import io.swagger.annotations.ApiOperation;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
