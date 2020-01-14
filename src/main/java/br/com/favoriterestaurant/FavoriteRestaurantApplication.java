@@ -61,15 +61,20 @@ public class FavoriteRestaurantApplication implements CommandLineRunner {
         Rodada rodada1 = new Rodada();
         rodada1.setIdRodada(null);
         rodada1.setNomeRodada("rodada 1");
-        roundRepository.save(rodada1);
+        Rodada rodada2 = new Rodada();
+        rodada2.setIdRodada(null);
+        rodada2.setNomeRodada("rodada 2");
+        roundRepository.saveAll(Arrays.asList(rodada1, rodada2));
 
         //Ao abrir rodada, verificar se o restaurante vencedor dessa rodada ja foi escolhido no
         //intervalo de uma semana
         Facilitador facilitador1 = new Facilitador(null, "facilitador 1", rodada1);
-        facilitadorRepository.save(facilitador1);
+        Facilitador facilitador2 = new Facilitador(null, "facilitador 2", rodada2);
+        facilitadorRepository.saveAll(Arrays.asList(facilitador1, facilitador2));
 
         rodada1.setFacilitador(facilitador1);
-        roundRepository.save(rodada1);
+        rodada2.setFacilitador(facilitador2);
+        roundRepository.saveAll(Arrays.asList(rodada1, rodada2));
 
 
         Restaurante r1 = new Restaurante(null, "Restaurante 1");
@@ -81,8 +86,9 @@ public class FavoriteRestaurantApplication implements CommandLineRunner {
 
         CandidatoRodada cd1 = new CandidatoRodada(null, r1, rodada1 );
         CandidatoRodada cd2 = new CandidatoRodada(null, r2, rodada1 );
-        CandidatoRodada cd3 = new CandidatoRodada(null, r3, rodada1 );
-        candidateRoundRepository.saveAll(Arrays.asList(cd1, cd2, cd3));
+        CandidatoRodada cd3 = new CandidatoRodada(null, r3, rodada2 );
+        CandidatoRodada cd4 = new CandidatoRodada(null, r4, rodada2 );
+        candidateRoundRepository.saveAll(Arrays.asList(cd1, cd2, cd3,cd4));
 
 //        rodada1.setCanditatoRodadas(candidatoRodadaList);
 //        rodadaRepository.save(rodada1);

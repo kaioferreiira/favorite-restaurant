@@ -41,16 +41,22 @@ public class VoteServiceImpl  implements VoteService {
     public void addANewVote(VoteInputDTO voteInputDTO) {
 
         //find user banco
-        Usuario user =
-                userService.findUser(voteInputDTO.getIdUser()).orElseThrow(() -> new ObjectNotFoundException(ERROR_USER_NOT_FOUND));
+        Usuario user = userService.findUser(voteInputDTO.getIdUser()).orElseThrow(() -> new ObjectNotFoundException(ERROR_USER_NOT_FOUND));
         //converter user dto to user;
 
+
         //find round required
-        Optional<Rodada> roundRepositoryById = roundRepository.findById(1l);
+        Optional<Rodada> roundRepositoryById = roundRepository.findById(voteInputDTO.getIdRodada());
 
         //find candidate roud required
-        Optional<CandidatoRodada> candidateRoud =
-                roundRepositoryById.get().getCanditatoRodadas().stream().filter(candidatoRodada -> candidatoRodada.getId().equals(voteInputDTO.getIdRodadaCandidate())).findFirst();
+        Optional<CandidatoRodada> candidateRoud = roundRepositoryById.get().getCanditatoRodadas().stream()
+                .filter(candidatoRodada -> candidatoRodada.getId().equals(voteInputDTO.getIdRodadaCandidate()))
+                .findFirst();
+
+        //validations to vote
+        //method restautent champion week seven days
+
+        //validation user vote onde restaurante per day in the  candidate round
 
 
 
