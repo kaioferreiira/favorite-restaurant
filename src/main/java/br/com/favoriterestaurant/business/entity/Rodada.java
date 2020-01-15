@@ -1,6 +1,7 @@
 package br.com.favoriterestaurant.business.entity;
 
 import java.util.List;
+import java.util.Objects;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -66,5 +67,28 @@ public class Rodada {
 
     public void setCanditatoRodadas(List<CandidatoRodada> canditatoRodadas) {
         this.canditatoRodadas = canditatoRodadas;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Rodada rodada = (Rodada) o;
+        return Objects.equals(idRodada, rodada.idRodada);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(idRodada);
+    }
+
+    @Override
+    public String toString() {
+        return "Rodada{" +
+                "idRodada=" + idRodada +
+                ", nomeRodada='" + nomeRodada + '\'' +
+                ", facilitador=" + facilitador +
+                ", canditatoRodadas=" + canditatoRodadas +
+                '}';
     }
 }

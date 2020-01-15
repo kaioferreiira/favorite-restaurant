@@ -1,6 +1,7 @@
 package br.com.favoriterestaurant.business.entity;
 
 import java.io.Serializable;
+import java.util.Objects;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -59,5 +60,27 @@ public class CandidatoRodada implements Serializable {
 
     public void setRodada(Rodada rodada) {
         this.rodada = rodada;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        CandidatoRodada that = (CandidatoRodada) o;
+        return Objects.equals(id, that.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
+    }
+
+    @Override
+    public String toString() {
+        return "CandidatoRodada{" +
+                "id=" + id +
+                ", restaurante=" + restaurante +
+                ", rodada=" + rodada +
+                '}';
     }
 }

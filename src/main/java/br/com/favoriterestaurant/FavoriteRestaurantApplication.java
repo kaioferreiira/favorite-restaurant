@@ -1,5 +1,6 @@
 package br.com.favoriterestaurant;
 
+import java.time.LocalDate;
 import java.util.Arrays;
 
 import br.com.favoriterestaurant.business.entity.CandidatoRodada;
@@ -113,6 +114,17 @@ public class FavoriteRestaurantApplication implements CommandLineRunner {
         //CRIAR DASHBOARD DE CONTABILIZAÇÃO DE DADOS
         // CRIAR ENDPOINT PARA BUSCAR O VENCEDOR DO DIAA.
 
+
+
+        LocalDate dataManipulacao = LocalDate.now();
+        System.out.println("Mais 1 dias: " + dataManipulacao.plusDays(1));
+        System.out.println("Mais 1 semanas: " + dataManipulacao.plusWeeks(1));
+        System.out.println("Mais 1 anos: " + dataManipulacao.plusYears(1));
+        System.out.println("Mais 1 meses: " + dataManipulacao.plusMonths(1));
+        System.out.println("Menos 1 ano: " + dataManipulacao.minusYears(1));
+        System.out.println("Menos 1 mês: " + dataManipulacao.minusMonths(1));
+        System.out.println("Menos 1 mês: " + dataManipulacao.minusWeeks(1));
+        System.out.println("Menos 1 dia: " + dataManipulacao.minusDays(1));
 
     }
 }
